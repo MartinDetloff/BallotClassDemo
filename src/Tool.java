@@ -77,18 +77,26 @@ public class Tool extends Application{
         for(NewProp prop : allProps ){
             full.append(eachProp(prop));
         }
-        full.append("/b\n");
+        full.append("//b\n");
         return full.toString();
     }
 
     private String eachProp(NewProp prop){
         StringBuilder eachProp = new StringBuilder();
-        eachProp.append(" /p\n");
-        eachProp.append("  /t ").append(prop.getTitle()).append("\n").append("  //t").append("\n");
-        eachProp.append("  /d ").append(prop.getDescription()).append("\n").append("  //d").append("\n");
-        eachProp.append("  /s ").append(prop.getSelections()).append("\n").append("  //s").append("\n");
-        eachProp.append(prop.getNumOptions());
-        eachProp.append(" //p\n");
+        String check = "good";
+        if(!prop.getTitle().isEmpty() || !prop.getDescription().isEmpty() || !prop.getSelections().isEmpty()) {
+            eachProp.append("/p\n");
+            eachProp.append("/t").append(prop.getTitle()).append("\n").append("//t").append("\n");
+            eachProp.append("/d").append(prop.getDescription()).append("\n").append("//d").append("\n");
+            eachProp.append("/n").append(prop.getSelections()).append("\n").append("//n").append("\n");
+            check = prop.getNumOptions();
+            eachProp.append(prop.getNumOptions());
+            eachProp.append("//p\n");
+        }
+        if(check.equalsIgnoreCase("None"))
+        {
+            return "";
+        }
         return eachProp.toString();
     }
 }

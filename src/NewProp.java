@@ -82,9 +82,18 @@ public class NewProp {
     }
     public String getNumOptions(){
         StringBuilder opts = new StringBuilder();
+        int none = 0;
         for(TextField option : options){
-            opts.append("  /o");
-            opts.append(option.getText()).append("\n").append("  //o").append("\n");;
+            if(!option.getText().isEmpty()) {
+                opts.append("/o");
+                opts.append(option.getText()).append("\n").append("  //o").append("\n");
+            }else{
+                none++;
+            }
+
+        }
+        if(none == 4){
+            return "None";
         }
         return opts.toString();
     }

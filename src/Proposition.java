@@ -15,25 +15,16 @@ class Proposition{
         this.numberOfOptions = options.getOptions().size();
         this.numberOfSelections = numberOfSelections;
     }
-//    public void addOptions(ArrayList<String> c){
-//        options = new OptionsList(c);
-//    }
-    public void addDescription(String d){ description = d;}
-    public void addTitle(String t){title = t;}
 
-//    public String getProposition() {
-//        return proposition;
-//    }
     public String getDescription() {
         return description;
     }
     public String getTitle() {
         return title;
     }
-
     public OptionsList getOptions() {
         return this.options;
     }
     public int getNumberOfSelections() {return numberOfSelections;}
-    boolean getOptionSelected(int index){return options.selectOptions(index);}
+    public boolean getOptionSelected(int index){return options.selectOptions(index);}
 }
