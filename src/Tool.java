@@ -16,6 +16,7 @@ public class Tool extends Application{
     private List<NewProp> allProps = new ArrayList<>();
     @Override
     public void start(Stage primaryStage) {
+
         VBox questions = new VBox(20);
         NewProp newProp = new NewProp();
         GridPane firstQuestion = newProp.getQues();
@@ -73,12 +74,12 @@ public class Tool extends Application{
 
     private String eachProp(NewProp prop){
         StringBuilder eachProp = new StringBuilder();
-        eachProp.append("/p\n");
-        eachProp.append("/t ").append(prop.getTitle()).append("/t").append("\n");
-        eachProp.append("/d ").append(prop.getDescription()).append("/d").append("\n");
-        eachProp.append("/s ").append(prop.getSelections()).append("/s").append("\n");
-        eachProp.append("/o ").append(prop.getNumOptions()).append("/o").append("\n");
-        eachProp.append("/p\n");
+        eachProp.append(" /p\n");
+        eachProp.append("  /t ").append(prop.getTitle()).append("\n").append("  //t").append("\n");
+        eachProp.append("  /d ").append(prop.getDescription()).append("\n").append("  //d").append("\n");
+        eachProp.append("  /s ").append(prop.getSelections()).append("\n").append("  //s").append("\n");
+        eachProp.append(prop.getNumOptions());
+        eachProp.append(" //p\n");
         return eachProp.toString();
     }
 }

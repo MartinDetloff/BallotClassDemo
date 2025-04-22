@@ -16,10 +16,7 @@ public class NewProp {
     public NewProp(){
         setProps();
         setOptions();
-        TextField line = new TextField("-------------------------------------------------------------------------------------------------------------");
-        line.setStyle("-fx-font-size: 32px; -fx-text-fill: blue;");
-        line.setEditable(false);
-        ques.add(line, 0, 9);
+        setEnd();
     }
     public GridPane getQues(){
         return ques;
@@ -72,20 +69,29 @@ public class NewProp {
         ques.add(Selbox, 0, 3);
     }
     public String getTitle(){
-         return ((TextArea)ques.getChildren().getFirst()).getText();
+         HBox title = (HBox) ques.getChildren().get(0);
+         return ((TextArea) title.getChildren().get(1)).getText();
     }
     public String getDescription(){
-        return ((TextArea)ques.getChildren().get(1)).getText();
+        HBox description = (HBox) ques.getChildren().get(1);
+        return ((TextArea) description.getChildren().get(1)).getText();
     }
     public String getSelections(){
-        return ((TextArea)ques.getChildren().get(2)).getText();
+        HBox selections = (HBox) ques.getChildren().get(2);
+        return ((TextField) selections.getChildren().get(1)).getText();
     }
     public String getNumOptions(){
         StringBuilder opts = new StringBuilder();
         for(TextField option : options){
-            opts.append(option.getText()).append("\n");
+            opts.append("  /o");
+            opts.append(option.getText()).append("\n").append("  //o").append("\n");;
         }
         return opts.toString();
+    }
+    private void setEnd(){
+        Label line = new Label("-------------------------------------------------------------------------------------------------------------");
+        line.setStyle("-fx-font-size: 32px; -fx-text-fill: blue;");
+        ques.add(line, 0, 9);
     }
 
 }
