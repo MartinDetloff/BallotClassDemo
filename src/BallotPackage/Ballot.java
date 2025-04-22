@@ -1,9 +1,11 @@
+package BallotPackage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Ballot{
+public class Ballot{
     ArrayList<Proposition> propositions;
     Boolean locked;
 

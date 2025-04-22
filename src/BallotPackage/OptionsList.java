@@ -1,13 +1,10 @@
+package BallotPackage;
+
 import java.util.ArrayList;
-import java.util.AbstractMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /*
  * Will contain the candidates, a boolean to confirm the selection and the index for the selection*/
-class OptionsList{
+public class OptionsList{
     private ArrayList<String> options;
     private int maxSelections;
     private int currentSelections;

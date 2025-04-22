@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+package BallotPackage;
 
 /*
  * This will hold the details of each individual proposition including a list of the options*/
-class Proposition{
+public class Proposition{
     private String title, description;
     private OptionsList options;
     private int numberOfSelections;
