@@ -12,6 +12,7 @@ class OptionsList{
     private int maxSelections;
     private int currentSelections;
     private ArrayList<Integer> indexSelected;
+    private ArrayList<Boolean> selected;
 
 
     /**
@@ -20,11 +21,13 @@ class OptionsList{
      * @param numberOfSelections the number of max selections for the current proposition
      */
     public OptionsList(ArrayList<String> options, int numberOfSelections){
+//        System.out.println("This is the number of selections " + numberOfSelections);
         this.maxSelections = numberOfSelections;
         this.currentSelections = 0;
         this.indexSelected = new ArrayList<>();
         this.options = options;
-
+        this.selected = new ArrayList<>();
+        fillBooleansList();
     }
 
     /**
@@ -42,27 +45,34 @@ class OptionsList{
     public ArrayList<Integer> getIndexSelected(){
         return this.indexSelected;
     }
+    public String getSelectedOption(int index){
+        return this.options.get(index);
+    }
 
-//    public void insertOptions(String opt, int size){
-//        candidates.add(opt);
-//        if(candidates.size() == size){}
-//    }
-
+    /**
+     * Method to fill the booleans list with all false
+     */
+    private void fillBooleansList(){
+        for (String option : options){
+            selected.add(false);
+        }
+    }
     /**
      * Method to select an option
      * @param selectionIndex the selected index
      * @return ..
      */
     public boolean selectOptions(int selectionIndex){
-        if((currentSelections < maxSelections) && (options.size() < selectionIndex)){
-            indexSelected.add(selectionIndex); // add the index to the array of selected indexes
+        if((currentSelections < maxSelections) && (options.size() > selectionIndex)){
+            selected.set(selectionIndex, true); // add the index to the array of selected indexes
+            System.out.println("Option selected " + getSelectedOption(selectionIndex));
             currentSelections++; // update the current selections
         }else if (currentSelections >= maxSelections){
             System.out.println("Cannot add anymore options");
         }else{
             System.out.println("Invalid, selected index is out of bounds");
         }
-        return (currentSelections < maxSelections);
+        return (currentSelections < maxSelections + 1);
     }
 
     /**

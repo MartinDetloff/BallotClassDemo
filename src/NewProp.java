@@ -11,16 +11,30 @@ import java.util.List;
 
 
 public class NewProp {
-        private GridPane ques = new GridPane();
-        List<TextField> options = new ArrayList<>();
+
+    private GridPane ques = new GridPane();
+    List<TextField> options = new ArrayList<>();
+
+    /**
+     * Constructer for each gridpane for the mark up that has many text fields.
+     */
     public NewProp(){
         setProps();
         setOptions();
         setEnd();
     }
+
+    /**
+     * gets the Gridpane of the object.
+     * @return
+     */
     public GridPane getQues(){
         return ques;
     }
+
+    /**
+     * Sets the text fields for the options a max of 5
+     */
     private void setOptions(){
         int placement = 4;
         for (int i = 1; i <= 5; i++) {
@@ -35,7 +49,14 @@ public class NewProp {
             placement ++;
         }
     }
+
+    /**
+     * Sets uo the title,description and selection textfields.
+     *
+     */
     private void setProps(){
+
+        //Title
         Label titleLabel = new Label("Enter Title : ");
         TextArea title = new TextArea();
         title.setPrefRowCount(2);
@@ -44,6 +65,7 @@ public class NewProp {
         title.setPrefHeight(25);
         HBox titleBox = new HBox(98,titleLabel,title);
 
+        //Title
         Label descriptionLabel = new Label("Enter Description : ");
         TextArea description = new TextArea();
         description.setPrefRowCount(3);
@@ -52,9 +74,10 @@ public class NewProp {
         description.setPrefHeight(25);
         HBox Desbox = new HBox(60,descriptionLabel,description);
 
-
+        //Selections
         Label selectLabel = new Label("Enter Number of Selections :");
         TextField selections = new TextField();
+        //Only one number between 1 and 5
         selections.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!newValue.matches("[1-5]?")){
                 selections.setText(oldValue);
@@ -69,18 +92,38 @@ public class NewProp {
         ques.add(Desbox, 0, 2);
         ques.add(Selbox, 0, 3);
     }
+
+    /**
+     * gets the title String
+     * @return
+     */
     public String getTitle(){
          HBox title = (HBox) ques.getChildren().get(0);
          return ((TextArea) title.getChildren().get(1)).getText();
     }
+
+    /**
+     * gets the Description Strings
+     * @return
+     */
     public String getDescription(){
         HBox description = (HBox) ques.getChildren().get(1);
         return ((TextArea) description.getChildren().get(1)).getText();
     }
+
+    /**
+     * gests the Selection String
+     * @return
+     */
     public String getSelections(){
         HBox selections = (HBox) ques.getChildren().get(2);
         return ((TextField) selections.getChildren().get(1)).getText();
     }
+
+    /**
+     * gets the option Strings
+     * @return
+     */
     public String getNumOptions(){
         StringBuilder opts = new StringBuilder();
         int none = 0;
@@ -92,12 +135,16 @@ public class NewProp {
                 none++;
             }
 
-        }
+        }//make sure at least one option is flled.
         if(none == 5){
             return "None";
         }
         return opts.toString();
     }
+
+    /**
+     * Puts the blue line to show the different propositions.
+     */
     private void setEnd(){
         Label line = new Label("-------------------------------------------------------------------------------------------------------------");
         line.setStyle("-fx-font-size: 32px; -fx-text-fill: blue;");

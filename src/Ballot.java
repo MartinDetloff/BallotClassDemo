@@ -1,12 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
 
 class Ballot{
-    ArrayList<Proposition> propositions = new ArrayList<>();
+    ArrayList<Proposition> propositions;
+    Boolean locked;
 
     /**
      * Constructor to init the ballots propositions into a List (Proposition 1, Proposition 2, Proposition 3)
@@ -16,8 +15,14 @@ class Ballot{
     public Ballot(File markUpFile) throws FileNotFoundException {
 
         // Method to read in the file and parse it into propositions
+        locked=false;
         this.propositions = extractInfo(markUpFile);
     }
+
+    /**
+     * This method is a lock to prevent tampering once the ballot is completed
+     */
+    public void lock(){locked=true;}
 
     /**
      * Method to parse in the file. It will return a list of propositions
@@ -47,14 +52,14 @@ class Ballot{
      * @return ArrayList of propositions
      */
     private ArrayList<Proposition> parseBallot(Scanner myReader){
-        System.out.println("Start of ballot");
+//        System.out.println("Start of ballot");
         ArrayList<Proposition> propositions = new ArrayList<>();
 
         while (myReader.hasNextLine()){
             String nextLine = myReader.nextLine();
 
             if (nextLine.equals("//b")){
-                System.out.println("End of ballot");
+//                System.out.println("End of ballot");
                 return propositions;
             }
             if (nextLine.equals("/p")){
@@ -72,7 +77,7 @@ class Ballot{
      * @return Proposition
      */
     private Proposition parseProposition(Scanner myReader){
-        System.out.println("Start of proposition");
+//        System.out.println("Start of proposition");
 
         String title = "";
         String description = "";
@@ -86,7 +91,7 @@ class Ballot{
 //                System.out.println("Title for proposition: " + title.toString());
 //                System.out.println("Description for proposition: " + description.toString());
 //                System.out.println("Options for proposition: " + options.get(0).toString());
-                System.out.println("End of proposition");
+//                System.out.println("End of proposition");
 
 //                System.out.println();
                 return new Proposition(
@@ -120,12 +125,12 @@ class Ballot{
      */
     private String parseOption(Scanner myReader){
 
-            System.out.println("Start of option");
+//            System.out.println("Start of option");
             String option = "";
             while (myReader.hasNext()){
                 String nextLine6 = myReader.nextLine();
                 if(nextLine6.equals("//o")){
-                    System.out.println("HERE 2" + option.toString());
+//                    System.out.println("HERE 2" + option.toString());
                     return option;
                 }
                 else {
@@ -142,17 +147,17 @@ class Ballot{
      */
     private int parseMaxNumOfSelections(Scanner myReader){
         int numberOfSelections = 0;
-        System.out.println("Start of number of options");
+//        System.out.println("Start of number of options");
         while (myReader.hasNext()){
             String nextLine5 = myReader.nextLine();
             if(nextLine5.equals("//n")){
-                System.out.println("End of number of options");
-                System.out.println();
+//                System.out.println("End of number of options");
+//                System.out.println();
                 return numberOfSelections;
             }
             else {
                 numberOfSelections = Integer.parseInt(nextLine5);
-                System.out.println(numberOfSelections);
+//                System.out.println(numberOfSelections);
             }
         }
         return numberOfSelections;
@@ -164,16 +169,16 @@ class Ballot{
      * @return String representation of the description "DESCRIPTION"
      */
     private String parseDescription(Scanner myReader){
-        System.out.println("Start of description");
+//        System.out.println("Start of description");
         StringBuilder description =  new StringBuilder();
 
         while (myReader.hasNext()){
             String nextLine4 = myReader.nextLine();
             if(nextLine4.equals("//d")){
-                System.out.println(description.toString());
-                System.out.println("End of description");
-                System.out.println();
-                break;
+//                System.out.println(description.toString());
+//                System.out.println("End of description");
+//                System.out.println();
+                return description.toString();
             }
             else {
                 description.append(nextLine4);
@@ -189,27 +194,37 @@ class Ballot{
      * @return String representation of the title "TITLE"
      */
     private String parseTitle(Scanner myReader){
-        System.out.println("Start of title");
+//        System.out.println("Start of title");
         StringBuilder title = new StringBuilder();
 
         while (myReader.hasNext()){
             String nextLine3 = myReader.nextLine();
 
             if(nextLine3.equals("//t")){
-                System.out.println(title.toString());
-                System.out.println("End of title");
-                System.out.println();
-                break;
+//                System.out.println(title.toString());
+//                System.out.println("End of title");
+//                System.out.println();
+                return title.toString();
+
             }
             else {
                 title.append(nextLine3);
             }
         }
-        System.out.println("HERE" + title.toString());
+//        System.out.println("HERE" + title.toString());
         return title.toString();
     }
 
-
+    /**
+     * Method to select certain option based upon certain proposition index
+     * @param indexOfProposition the index of the proposition
+     * @param indexOfOption the index of the option
+     */
+    public void selectCertainOption(int indexOfProposition, int indexOfOption){
+        if(!locked) {
+            propositions.get(indexOfProposition).getOptions().selectOptions(indexOfOption);
+        }
+    }
 
     /**
      * Method to print out the ballot to make sure it is working (For Testing)

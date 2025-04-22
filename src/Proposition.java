@@ -16,6 +16,9 @@ class Proposition{
         this.numberOfSelections = numberOfSelections;
     }
 
+    /**
+     * Retrieval methods to obtain the current values
+     */
     public String getDescription() {
         return description;
     }
@@ -26,5 +29,5 @@ class Proposition{
         return this.options;
     }
     public int getNumberOfSelections() {return numberOfSelections;}
-    public boolean getOptionSelected(int index){return options.selectOptions(index);}
+//    public boolean getOptionSelected(int index){return options.selectOptions(index);}
 }

@@ -2,9 +2,16 @@ import java.io.*;
 
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
+
         ClassLoader classLoader = main.class.getClassLoader();
-        File file = new File(classLoader.getResource("markUpEx1.txt").getFile());
+        File file = new File(classLoader.getResource("son.txt").getFile());
         Ballot b = new Ballot(file);
+
         b.toString();
+
+        System.out.println("Testing Setting Boolean to true based upon index");
+        System.out.println("Index of Option: 1");
+        System.out.println("Index of Proposition: 0");
+        b.selectCertainOption(0, 1);
     }
 }

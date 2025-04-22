@@ -2,11 +2,11 @@
 /p
 
 /t
-Title 1
+Presidential Election
 //t
 
 /d
-Description 1
+General Election for the president of the United States of America
 //d
 
 /n
@@ -14,15 +14,15 @@ Description 1
 //n
 
 /o
-Option NO
+Donald Trump
 //o
 
 /o
-mother of f
+Bernie Sanders
 //o
 
 /o
-mother of h
+Kamala Harris
 //o
 
 //p
@@ -31,11 +31,11 @@ mother of h
 /p
 
 /t
-Title 2
+Most Controversial Celebrity
 //t
 
 /d
-Description 2
+General Election for the most controversial public figure
 //d
 
 /n
@@ -43,15 +43,15 @@ Description 2
 //n
 
 /o
-Option YES
+Kanye West
 //o
 
 /o
-mother of a
+Alex Jones
 //o
 
 /o
-mother of b
+Elon Musk
 //o
 
 
