@@ -8,6 +8,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class Tool extends Application{
     private List<NewProp> allProps = new ArrayList<>();
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage)  {
 
         VBox questions = new VBox(20);
         NewProp newProp = new NewProp();
@@ -38,6 +40,13 @@ public class Tool extends Application{
         submit.setOnAction(e -> {
             String mark = createMarkup();
             System.out.println(mark);
+            try {
+                FileWriter markUp = new FileWriter("Makrkup.txt");
+                markUp.write(mark);
+                markUp.close();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         ScrollPane scroll = new ScrollPane(questions);
