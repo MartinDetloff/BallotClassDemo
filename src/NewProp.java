@@ -29,7 +29,8 @@ public class NewProp {
             option.setPrefWidth(300);
             option.setPrefHeight(25);
             options.add(option);
-            HBox optionBox = new HBox(10,optionLabel,option);
+            HBox optionBox = new HBox(80,optionLabel,option);
+            optionBox.setAlignment(Pos.CENTER_LEFT);
             ques.add(optionBox, 0, placement);
             placement ++;
         }
@@ -41,7 +42,7 @@ public class NewProp {
         title.setWrapText(true);
         title.setPrefWidth(300);
         title.setPrefHeight(25);
-        HBox titleBox = new HBox(10,titleLabel,title);
+        HBox titleBox = new HBox(98,titleLabel,title);
 
         Label descriptionLabel = new Label("Enter Description : ");
         TextArea description = new TextArea();
@@ -49,7 +50,7 @@ public class NewProp {
         description.setWrapText(true);
         description.setPrefWidth(300);
         description.setPrefHeight(25);
-        HBox Desbox = new HBox(10,descriptionLabel,description);
+        HBox Desbox = new HBox(60,descriptionLabel,description);
 
 
         Label selectLabel = new Label("Enter Number of Selections :");
