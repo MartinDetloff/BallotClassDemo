@@ -86,9 +86,9 @@ public class Tool extends Application{
         String check = "good";
         if(!prop.getTitle().isEmpty() || !prop.getDescription().isEmpty() || !prop.getSelections().isEmpty()) {
             eachProp.append("/p\n");
-            eachProp.append("/t").append(prop.getTitle()).append("\n").append("//t").append("\n");
-            eachProp.append("/d").append(prop.getDescription()).append("\n").append("//d").append("\n");
-            eachProp.append("/n").append(prop.getSelections()).append("\n").append("//n").append("\n");
+            eachProp.append("/t\n").append(prop.getTitle()).append("\n//t\n");
+            eachProp.append("/d\n").append(prop.getDescription()).append("\n//d\n");
+            eachProp.append("/n\n").append(prop.getSelections()).append("\n//n\n");
             check = prop.getNumOptions();
             eachProp.append(prop.getNumOptions());
             eachProp.append("//p\n");

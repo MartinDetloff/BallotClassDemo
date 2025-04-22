@@ -55,11 +55,11 @@ public class NewProp {
         Label selectLabel = new Label("Enter Number of Selections :");
         TextField selections = new TextField();
         selections.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.matches("\\d*")){
-                selections.setText(newValue.replaceAll("[^\\d]", ""));
+            if(!newValue.matches("[1-5]?")){
+                selections.setText(oldValue);
             }
         });
-        selections.setPrefWidth(300);
+        selections.setPrefWidth(25);
         selections.setPrefHeight(25);
         HBox Selbox = new HBox(10,selectLabel,selections);
 
@@ -85,14 +85,14 @@ public class NewProp {
         int none = 0;
         for(TextField option : options){
             if(!option.getText().isEmpty()) {
-                opts.append("/o");
-                opts.append(option.getText()).append("\n").append("  //o").append("\n");
+                opts.append("/o").append("\n");
+                opts.append(option.getText()).append("\n//o\n");
             }else{
                 none++;
             }
 
         }
-        if(none == 4){
+        if(none == 5){
             return "None";
         }
         return opts.toString();
