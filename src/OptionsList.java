@@ -11,12 +11,12 @@ class OptionsList{
     private ArrayList<String> candidates;
     private int maxSelections;
     private int currentSelections;
-    private int[] indexSelected;
+    private ArrayList<Integer> indexSelected;
 
     public OptionsList(ArrayList<String> c, int numberOfSelections){
         maxSelections = numberOfSelections;
         currentSelections = 0;
-        indexSelected = new int[numberOfSelections];
+        indexSelected = new ArrayList<>();
         candidates = c;
     }
 
@@ -29,12 +29,17 @@ class OptionsList{
         if(candidates.size() == size){/*TODO: handle option insertion*/}
     }
 
-    public boolean selectOptions(int select){
-        if((currentSelections < maxSelections) && (candidates.size() < select)){
-            indexSelected[currentSelections] = select;
-            currentSelections++;
-        }else {/*TODO: handle this error*/}
+    public boolean selectOptions(int selectionIndex){
+        if((currentSelections < maxSelections) && (candidates.size() < selectionIndex)){
+            indexSelected.add(selectionIndex); // add the index to the array of selected indexes
+            currentSelections++; // update the current selections
+        }else if (currentSelections >= maxSelections){
+            /*TODO: handle this error*/}
         return (currentSelections < maxSelections);
+    }
+
+    public void clearOptions(){
+        indexSelected.clear();
     }
 
 }
